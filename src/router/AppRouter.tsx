@@ -8,6 +8,7 @@ export const AppRouter = () => {
     return (
         <Routes>
             TODO: {
+                // @ts-ignore
                 (authStatus ===  'not-authenticated')
                 ?   <Route path="/auth/*" element={ <LoginPage /> }/>
                 :   <Route path="/*" element={ <CalendarPage /> }/>

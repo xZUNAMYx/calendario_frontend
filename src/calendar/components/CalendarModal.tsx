@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { addHours, addYears, differenceInSeconds, setHours, setMinutes } from 'date-fns';
+import { addHours, differenceInSeconds } from 'date-fns';
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -9,7 +9,7 @@ import Modal from 'react-modal';
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from 'date-fns/locale/es';
-import { onCloseDateModal } from '../../stores';
+// import { onCloseDateModal } from '../../stores';
 import { useCalendarStore, useUiStore } from '../../hooks';
 
 registerLocale('es', es);
@@ -57,14 +57,14 @@ export const CalendarModal = () => {
 
     }, [ formValues.title, formSubmitted ])
 
-    const onInputChanged = ({ target }) =>{
+    const onInputChanged = ({ target }:any) =>{
         setFormValues({
             ...formValues,
             [target.name]: target.value
         })
     }
 
-    const onDateChanged = (event, changing: string)=> {
+    const onDateChanged = (event: any, changing: string)=> {
         setFormValues({
             ...formValues,
             [changing]: event
@@ -76,7 +76,7 @@ export const CalendarModal = () => {
         console.log('Cerrando modal');
     }
 
-    const onSubmit = async ( event ) =>{
+    const onSubmit = async ( event: any ) =>{
         event.preventDefault();
         setFormSubmitted(true);
 
@@ -164,12 +164,14 @@ export const CalendarModal = () => {
 
                 <div className="form-group mb-2">
                     <textarea 
+                    // @ts-ignore
                         type="text" 
                         className="form-control"
                         placeholder="Notas"
-                        rows="5"
-                        name="notes"
+                        // @ts-ignore
+                        rows='5'                        name="notes"
                         value={ formValues.notes }
+                        // @ts-ignore
                         onChange={ onInputChanged }
                     ></textarea>
                     <small id="emailHelp" className="form-text text-muted">Información adicional</small>

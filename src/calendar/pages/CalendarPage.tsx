@@ -13,8 +13,10 @@ export const CalendarPage = () => {
   const { openDateModal } = useUiStore();
   const { events, setActiveEvent } = useCalendarStore() ;
   
+  // @ts-ignore
   const [lastView, setLastView] = useState( localStorage.getItem('lastView') || 'week');
 
+  // @ts-ignore
   const eventStyleGetter = ( event: {}, start: Date, end: Date, isSelected: boolean )=>{
     // TODO: Verificar si se renderiza varias veces
 
@@ -30,17 +32,17 @@ export const CalendarPage = () => {
     }
   }
 
-  const onDoubleClick = ( event ) => {
+  const onDoubleClick = ( event: any ) => {
     openDateModal();
     console.log( { doubleClick: event })
   }
 
   // TODO: Pasar la actual que es este evento y saber a cual se le dio click
-  const onSelect = ( event ) => {
+  const onSelect = ( event: any ) => {
     setActiveEvent( event );
   }
 
-  const onViewChanged = ( event ) => {
+  const onViewChanged = ( event: any ) => {
     console.log( { viewChanged: event })
     localStorage.setItem('lastView', event);
   }
@@ -49,6 +51,7 @@ export const CalendarPage = () => {
     <>
       <Navbar />
 
+      {/* @ts-ignore */}
       <Calendar
         culture='es'
         localizer={ localizer }

@@ -4,13 +4,14 @@ import { onAddNewEvent, onDeleteEvent, onSetActiveEvent, onUpdateEvent } from ".
 export const useCalendarStore = () => {
     const dispatch = useDispatch();
 
+    // @ts-ignore
     const { events, activeEvent } = useSelector( state => state.calendar );
 
-    const setActiveEvent = ( calendarEvent )=> {
+    const setActiveEvent = ( calendarEvent: any )=> {
         dispatch( onSetActiveEvent( calendarEvent ) );
     }
 
-    const startSavingEvent = async ( calendarEvent )=>{
+    const startSavingEvent = async ( calendarEvent: any )=>{
         //TODO: llegar al backend
 
         //Todo bien
